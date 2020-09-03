@@ -1,0 +1,22 @@
+#Format: "name" "modifier"
+#        "text"
+#        "choices"
+#-------------------------
+:> scene1 normal
+Huahue bla bla
+1) scene2 neco
+2) scene3 text
+3) scene4 umri
+
+:> scene2 normal
+Warbl garbl
+1) scene3 wooooo
+2) scene4 baba yaga
+
+:> scene3 end
+Nice to meet ya
+
+:> scene4 end
+Rot in hell
+
+#
