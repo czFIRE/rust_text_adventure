@@ -4,6 +4,7 @@
 #-------------------------
 :> scene1 normal
 Huahue bla bla
+Mám více řádků :D
 1) scene2 neco
 2) scene3 text
 3) scene4 umri
@@ -13,10 +14,18 @@ Warbl garbl
 1) scene3 wooooo
 2) scene4 baba yaga
 
-:> scene3 end
+:> scene3 fight 
+This is a fight scene.
+1) scene5 whoosh
+
+:> scene4 fight
+this is second fight scene.
+1) scene6 yaaaay
+
+:> scene5 end
 Nice to meet ya
 
-:> scene4 end
+:> scene6 end
 Rot in hell
 
 #
