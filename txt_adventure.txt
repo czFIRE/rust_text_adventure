@@ -1,4 +1,4 @@
-#Format: "name" "modifier"
+#Format: "name" "modifier" ("location of mosters" if it is a fight scene)
 #        "text"
 #        "choices"
 #-------------------------
@@ -14,11 +14,11 @@ Warbl garbl
 1) scene3 wooooo
 2) scene4 baba yaga
 
-:> scene3 fight 
+:> scene3 fight monster1.txt
 This is a fight scene.
 1) scene5 whoosh
 
-:> scene4 fight
+:> scene4 fight monster2.txt
 this is second fight scene.
 1) scene6 yaaaay
 

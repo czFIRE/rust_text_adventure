@@ -1,7 +1,7 @@
-pub mod io_interactions;
 pub mod end_scene;
-pub mod text_scene;
 pub mod fight_scene;
+pub mod io_interactions;
+pub mod text_scene;
 
 /// Converter from string to SceneType
 impl SceneType {
@@ -15,31 +15,15 @@ impl SceneType {
     }
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone, Copy)]
 pub enum SceneType {
     Normal,
     Fight,
     End,
 }
 
-#[derive(Debug)]
-pub struct Scene {
-    pub scene_type: SceneType,  //maybe remove pub in favour of getter?
-    pub scene_text: String,
-    pub choices: Vec<String>,
-}
-
-impl Scene {
-    /// Constructs new instance of Scene
-    fn from(scene_type: SceneType, scene_text: String, choices: Vec<String>) -> Self {
-        Scene {
-            scene_type,
-            scene_text,
-            choices,
-        }
-    }
-}
-
-pub trait nevim {
-    fn playout();
+pub trait Scene {
+    fn playout(&self) -> String;
+    fn get_scene_text(&self) -> String;
+    fn get_scene_type(&self) -> SceneType;
 }

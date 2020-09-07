@@ -1,7 +1,7 @@
+use super::{Scene, SceneType};
+use std::collections::HashMap;
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
-use std::collections::HashMap;
-use super::{Scene, SceneType};
 
 #[derive(PartialEq, Debug)]
 enum ReaderState {
@@ -33,7 +33,10 @@ pub fn get_user_action(max_choice: usize) -> usize {
     }
 }
 
-pub fn file_parser(scenes: &mut HashMap<String, Scene>, arguments: Vec<String>) -> std::io::Result<()> {
+pub fn file_parser(
+    scenes: &mut HashMap<String, Box<dyn Scene>>,
+    arguments: Vec<String>,
+) -> std::io::Result<()> {
     let source_file = File::open(&arguments[1])?;
     let source_reader = BufReader::new(source_file);
 
@@ -47,26 +50,19 @@ pub fn file_parser(scenes: &mut HashMap<String, Scene>, arguments: Vec<String>) 
 
         //doesn't work for last
         if current_line.trim().is_empty() {
-            let scene = Scene::from(
-                SceneType::from_string(scene_line[2].as_ref()),
-                scene_text.clone(),
-                scene_choices.clone(),
-            );
+            let scene_type = SceneType::from_string(scene_line[2].as_ref());
+            let scene: Box<dyn Scene> =
+                create_scene(scene_type, scene_text.clone(), scene_choices.clone());
+
             scenes.insert(scene_line[1].to_string(), scene);
+
             reader_state = ReaderState::LoadingSeq;
             scene_line.clear();
             scene_text.clear();
             scene_choices.clear();
             continue;
         }
-/*
-        if current_line.starts_with('#') {
-            if VERBOSE {
-                println!("{}", current_line);
-            }
-            continue;
-        }
-*/
+
         println!("smt: {}", current_line);
 
         if current_line.starts_with(":>") {
@@ -96,4 +92,26 @@ pub fn file_parser(scenes: &mut HashMap<String, Scene>, arguments: Vec<String>) 
     }
 
     Ok(())
+}
+
+fn create_scene(
+    scene_type: SceneType,
+    scene_text: String,
+    scene_choices: Vec<String>,
+) -> Box<dyn Scene> {
+    match scene_type {
+        SceneType::Normal => {
+            super::text_scene::TextScene::new_inst(scene_type, scene_text, scene_choices)
+        }
+        SceneType::Fight => {
+            super::fight_scene::FightScene::new_inst(scene_type, scene_text, scene_choices)
+        }
+        SceneType::End => {
+            super::end_scene::EndScene::new_inst(scene_type, scene_text)
+        }
+    }
+}
+
+fn load_fight_scene () {
+    todo!();
 }
