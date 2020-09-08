@@ -9,7 +9,11 @@ pub struct TextScene {
 
 impl TextScene {
     /// Constructs new instance of Scene
-    pub fn new_inst(scene_type: SceneType, scene_text: String, choices: Vec<String>) -> Box<dyn Scene> {
+    pub fn new_inst(
+        scene_type: SceneType,
+        scene_text: String,
+        choices: Vec<String>,
+    ) -> Box<dyn Scene> {
         Box::new(TextScene {
             scene_type,
             scene_text,
@@ -19,10 +23,10 @@ impl TextScene {
 }
 
 impl Scene for TextScene {
-    fn playout(&self) -> String {
+    fn playout(&mut self) -> String {
         println!("{}", self.get_scene_text());
 
-        let num = get_user_action(self.choices.len());
+        let num = get_user_action(self.choices.len(), 1);
 
         self.choices[num - 1].clone()
     }

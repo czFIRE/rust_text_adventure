@@ -2,8 +2,8 @@ use std::collections::HashMap;
 use std::env;
 
 mod scenes;
+use scenes::io_interactions::*;
 use scenes::Scene;
-use scenes::{io_interactions::*, SceneType};
 
 fn main() -> std::io::Result<()> {
     let arguments: Vec<String> = env::args().collect();
@@ -15,7 +15,7 @@ fn main() -> std::io::Result<()> {
         )
     }
 
-    println!("{:?}", arguments[1]);
+    //println!("{:?}", arguments[1]);
 
     let mut scenes: HashMap<String, Box<dyn Scene>> = HashMap::new();
 
@@ -29,20 +29,19 @@ fn main() -> std::io::Result<()> {
     Ok(())
 }
 
-fn game_loop(scenes: HashMap<String, Box<dyn Scene>>, start: String) {
+fn game_loop(mut scenes: HashMap<String, Box<dyn Scene>>, start: String) {
     let mut scene_counter: i32 = 0;
     let mut current_choice: String = start;
 
     loop {
         scene_counter += 1;
         //potentially unsafe unwrap, consider checking here
-        let current_scene = scenes.get(&current_choice).unwrap();
+        let current_scene: &mut Box<dyn Scene> = scenes.get_mut(&current_choice).unwrap();
 
         match current_scene.playout().as_str() {
             "" => break,
             x => current_choice = x.to_string(),
         }
-
     }
     println!("{}", scene_counter);
 }

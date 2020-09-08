@@ -5,25 +5,27 @@
 :> scene1 normal
 Huahue bla bla
 Mám více řádků :D
-1) scene2 neco
-2) scene3 text
-3) scene4 umri
+1) scene2 Nevím co sem mám psát
+2) scene3 Je to dooopravdy strašné
+3) scene4 Tohle není textová adventura
 
 :> scene2 normal
 Warbl garbl
-1) scene3 wooooo
-2) scene4 baba yaga
+1) scene3 Tohle je utrpení
+2) scene4 Kdo by to chtěl dělat, parsery jsou zlo
 
-:> scene3 fight monster1.txt
+:> scene3 fight monster1.txt scene2
 This is a fight scene.
-1) scene5 whoosh
+1) scene5 Fight the monster
+2) scene1 Run away!
 
-:> scene4 fight monster2.txt
+:> scene4 fight monster2.txt scene2
 this is second fight scene.
-1) scene6 yaaaay
+1) scene6 Fight the monster
+2) scene3 Get the f out
 
 :> scene5 end
-Nice to meet ya
+Welcome to heaven
 
 :> scene6 end
 Rot in hell

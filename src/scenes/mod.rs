@@ -1,4 +1,5 @@
 pub mod end_scene;
+pub mod entities;
 pub mod fight_scene;
 pub mod io_interactions;
 pub mod text_scene;
@@ -15,7 +16,7 @@ impl SceneType {
     }
 }
 
-#[derive(PartialEq, Debug, Clone, Copy)]
+#[derive(PartialEq, Debug, Clone)]
 pub enum SceneType {
     Normal,
     Fight,
@@ -23,7 +24,7 @@ pub enum SceneType {
 }
 
 pub trait Scene {
-    fn playout(&self) -> String;
+    fn playout(&mut self) -> String;
     fn get_scene_text(&self) -> String;
     fn get_scene_type(&self) -> SceneType;
 }

@@ -17,7 +17,7 @@ impl EndScene {
 }
 
 impl Scene for EndScene {
-    fn playout(&self) -> String {
+    fn playout(&mut self) -> String {
         println!("{}", self.scene_text);
         "".to_string()
     }
