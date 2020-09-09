@@ -1,21 +1,32 @@
+/*use crate::{
+    scenes::entities::*,
+    scenes::io_interactions::get_user_action,
+    scenes::{Scene, SceneType},
+};*/
+
 use super::{
-    entities::{Damagable, Monster, Player},
+    entities::*,
     io_interactions::get_user_action,
-    Scene, SceneType,
+    {Scene, SceneType},
 };
 
+/// Implementation of scene with fighting
 #[derive(Debug)]
 pub struct FightScene {
-    pub scene_type: SceneType, //maybe remove pub in favour of getter?
+    /// Type of the scene
+    pub scene_type: SceneType,
+    /// Text of the scene
     pub scene_text: String,
-    /// keys in this vector are in this order: "loss" "win" "run away"
+    /// Vector of keys with choices. Keys in this vector are order: "loss" "win" "run away"
     pub choices: Vec<String>,
+    /// Structure containing info about player
     pub player: Player,
+    /// Vector of monsters for the player to fight
     pub monsters: Vec<Monster>,
 }
 
 impl FightScene {
-    /// Constructs new instance of Scene
+    /// Returns new instance of Scene
     pub fn new_inst(
         scene_type: SceneType,
         scene_text: String,
@@ -34,6 +45,7 @@ impl FightScene {
 }
 
 impl Scene for FightScene {
+    /// Acts out the logic of fight scene
     fn playout(&mut self) -> String {
         println!("{}", self.get_scene_text());
         println!("You have entered a fight scene, you can either choose to fight the monsters (choice 1) or run away (choice 2)");
@@ -48,14 +60,17 @@ impl Scene for FightScene {
         );
 
         for mut monster in self.monsters.to_vec() {
+            // should be replaced with nicer printout
             println!("You have started fighting {:?}", monster);
             loop {
                 let mut dmg: i32 = 0;
                 match get_user_action(2, 1) {
+                    // light attack
                     1 => {
                         dmg += monster.take_damage(self.player.min_light, self.player.max_light);
                         dmg += monster.take_damage(self.player.min_light, self.player.max_light);
                     }
+                    // heavy attack
                     2 => {
                         dmg += monster.take_damage(self.player.min_heavy, self.player.max_heavy);
                     }

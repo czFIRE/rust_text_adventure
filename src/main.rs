@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::env;
 
 mod scenes;
-use scenes::io_interactions::*;
+use scenes::io_interactions::file_parser;
 use scenes::Scene;
 
 fn main() -> std::io::Result<()> {
@@ -15,20 +15,18 @@ fn main() -> std::io::Result<()> {
         )
     }
 
-    //println!("{:?}", arguments[1]);
-
+    // Main storage for the scenes and their names
     let mut scenes: HashMap<String, Box<dyn Scene>> = HashMap::new();
 
     file_parser(&mut scenes, arguments)?;
 
-    //println!("{:?}", scenes);
-
-    // here it is hardcoded, do smt about it
+    // here it is hardcoded, do smt about it -> maybe add it as "cmd argument"
     game_loop(scenes, String::from("scene1"));
 
     Ok(())
 }
 
+/// Function for the main loop of the game.
 fn game_loop(mut scenes: HashMap<String, Box<dyn Scene>>, start: String) {
     let mut scene_counter: i32 = 0;
     let mut current_choice: String = start;

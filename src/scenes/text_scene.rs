@@ -1,4 +1,12 @@
-use super::{io_interactions::get_user_action, Scene, SceneType};
+/*use crate::{
+    scenes::io_interactions::get_user_action,
+    scenes::{Scene, SceneType}
+};*/
+
+use super::{
+    io_interactions::get_user_action,
+    {Scene, SceneType},
+};
 
 #[derive(Debug)]
 pub struct TextScene {
@@ -8,7 +16,7 @@ pub struct TextScene {
 }
 
 impl TextScene {
-    /// Constructs new instance of Scene
+    /// Returns new instance of Scene
     pub fn new_inst(
         scene_type: SceneType,
         scene_text: String,
@@ -23,6 +31,7 @@ impl TextScene {
 }
 
 impl Scene for TextScene {
+    /// Acts out the logic of choice text scene
     fn playout(&mut self) -> String {
         println!("{}", self.get_scene_text());
 

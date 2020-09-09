@@ -1,11 +1,19 @@
+/*use crate::{
+    scenes::entities::*,
+    scenes::{end_scene, fight_scene, text_scene},
+    scenes::{Scene, SceneType},
+};*/
+
 use super::{
-    entities::{Monster, Player},
-    Scene, SceneType,
+    entities::*,
+    {end_scene, fight_scene, text_scene}, {Scene, SceneType},
 };
+
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{self, BufRead, BufReader, Result};
 
+/// Used for parser logic, mostly obsolete and could be replaced
 #[derive(PartialEq, Debug)]
 enum ReaderState {
     LoadingSeq,
@@ -13,6 +21,7 @@ enum ReaderState {
     LoadingChoices,
 }
 
+/// Gets numerical input from player and checks whether the number is from correct range
 pub fn get_user_action(max_choice: usize, min_choice: usize) -> usize {
     loop {
         let mut action: String = String::new();
@@ -36,6 +45,7 @@ pub fn get_user_action(max_choice: usize, min_choice: usize) -> usize {
     }
 }
 
+/// Parses the input file specified in arguments from command line
 pub fn file_parser(
     scenes: &mut HashMap<String, Box<dyn Scene>>,
     arguments: Vec<String>,
@@ -44,6 +54,7 @@ pub fn file_parser(
     let source_reader = BufReader::new(source_file);
 
     let mut reader_state = ReaderState::LoadingSeq;
+    // probably obsolete and should be replaced with variables
     let mut scene_line: Vec<String> = Vec::new();
     let mut scene_text: String = String::new();
     let mut scene_choices: Vec<String> = Vec::new();
@@ -54,13 +65,13 @@ pub fn file_parser(
     for line in source_reader.lines() {
         let current_line = line?;
 
+        // commentary line
         if current_line.starts_with('#') {
             continue;
         }
 
-        //println!("smt: {}", current_line);
-
-        //doesn't work for last
+        // Empty lines serve as seperators for scenes and "give command" for new Scene to be generated
+        // doesn't work for last
         if current_line.trim().is_empty() {
             let scene_type = SceneType::from_string(scene_line[2].as_ref());
             let scene: Box<dyn Scene> = create_scene(
@@ -81,6 +92,7 @@ pub fn file_parser(
             continue;
         }
 
+        // line that specifies name, type and other modifiers
         if current_line.starts_with(":>") {
             let curr_line = current_line.split_whitespace();
             scene_line = curr_line.map(String::from).collect();
@@ -95,6 +107,7 @@ pub fn file_parser(
             continue;
         }
 
+        // line declaring choices
         if current_line.chars().next().unwrap().is_numeric() {
             scene_text.push_str(&current_line);
             scene_text.push('\n');
@@ -106,7 +119,7 @@ pub fn file_parser(
             continue;
         }
 
-        //this can be done using match
+        // line with text
         if reader_state == ReaderState::LoadingScene {
             scene_text.push_str(&current_line);
             scene_text.push('\n');
@@ -117,6 +130,7 @@ pub fn file_parser(
     Ok(())
 }
 
+/// Returns new Scene based on scene type. Result is allocated on heap
 fn create_scene(
     scene_type: SceneType,
     scene_text: String,
@@ -125,20 +139,19 @@ fn create_scene(
     monsters: Vec<Monster>,
 ) -> Box<dyn Scene> {
     match scene_type {
-        SceneType::Normal => {
-            super::text_scene::TextScene::new_inst(scene_type, scene_text, scene_choices)
-        }
-        SceneType::Fight => super::fight_scene::FightScene::new_inst(
+        SceneType::Normal => text_scene::TextScene::new_inst(scene_type, scene_text, scene_choices),
+        SceneType::Fight => fight_scene::FightScene::new_inst(
             scene_type,
             scene_text,
             scene_choices,
             player,
             monsters,
         ),
-        SceneType::End => super::end_scene::EndScene::new_inst(scene_type, scene_text),
+        SceneType::End => end_scene::EndScene::new_inst(scene_type, scene_text),
     }
 }
 
+/// Parser for loading monsters from file, returns Player stats for scene and vector of monsters he will have to fight
 fn load_fight_scene(path: String) -> Result<(Player, Vec<Monster>)> {
     let source_file = File::open(path)?;
     let source_reader = BufReader::new(source_file);
@@ -151,8 +164,7 @@ fn load_fight_scene(path: String) -> Result<(Player, Vec<Monster>)> {
     for line in source_reader.lines() {
         let current_line = line?;
 
-        //println!("fgt: {}", current_line);
-
+        // commentary line
         if current_line.starts_with('#') || current_line.trim().is_empty() {
             continue;
         }

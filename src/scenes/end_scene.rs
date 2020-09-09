@@ -1,5 +1,8 @@
+//use crate::scenes::{Scene, SceneType};
+
 use super::{Scene, SceneType};
 
+/// Implementation of end scene
 #[derive(Debug)]
 pub struct EndScene {
     scene_type: SceneType,
@@ -7,7 +10,7 @@ pub struct EndScene {
 }
 
 impl EndScene {
-    /// Constructs new instance of Scene
+    /// Returns new instance of Scene
     pub fn new_inst(scene_type: SceneType, scene_text: String) -> Box<dyn Scene> {
         Box::new(EndScene {
             scene_type,
@@ -17,6 +20,7 @@ impl EndScene {
 }
 
 impl Scene for EndScene {
+    /// Acts out the logic of end scene
     fn playout(&mut self) -> String {
         println!("{}", self.scene_text);
         "".to_string()
