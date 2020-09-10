@@ -1,4 +1,4 @@
 #Format: "player life" "player light attack damage" "player heavy attack damage"
 #        "monster name" "monster life" "monster damage_max"
 player: 5 2 3
-Hlinas 4 3
+Algoritmy 4 3

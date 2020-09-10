@@ -1,4 +1,4 @@
 #Format: "player life" "player light attack damage" "player heavy attack damage"
 #        "monster name" "monster life" "monster damage_max"
-player: 7 3 5
-FJA 10 3
+player: 5 2 3
+SuspiciousMan 8 4

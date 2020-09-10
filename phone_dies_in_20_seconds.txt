@@ -1,0 +1,76 @@
+:> scene1 normal
+You have finished a late shift at 12am. The streets of the small town have been emcompassed in darkness. The buses have terminated services for the night and you have no choice but to walk home, which is 25 minutes away. You hear the sounds of footsteps behind you. You have a strong feeling in your gut that you are being followed.
+Hands shaking, you pull out your phone. You only have 5% battery left on your phone. You haven't got much time.
+What do you do?
+1) sceneA Turn on phone
+2) scene2 Risk it and walk faster
+
+:> scene2 fight kidnapper1.txt scene4
+Your phone is going to die anyway, what is the point? You put your phone away and pick up the pace in your step. As you exit Serene Lane, you dread every step you make towards the underpass in Lake Park.
+Once you cross here, there will be no witnesses.
+You take a deep breath as you enter the park that offers no assurance with lighting. Instead, a broken streetlamp and a dim litted tunnel was all you had to work with.
+You continue to hear footsteps behind you. Are you daydreaming? You don't dare to turn around, and you speed up the pace. Walking through the underpass. Your walking gradually became jogging as you wanted to reach the end of the horrid tunnel.
+Your heart almost stops as you hear the sound of jogging behind you. Someone is running towards you.
+What do you do?
+1) scene4 Confront him 
+2) scene3 Start running
+
+:> scene3 normal
+You pick up the pace and start running down Combe Street. You haven't ran this fast since the relay race you were forced to do at high school. Your body is exhausted after standing on your feet all day from work and adding running for your life to the day was overkill. But your feet don't stop. They can't stop.
+You know you're almost there, and you can only pray that you will get there alive.
+1) scene5
+
+:> scene4 normal
+You didn't know what else to do.
+Your body couldn't handle running anymore, you were so exhausted from work. You took a deep breath before expelling the loudest scream your body can manage. You can hear your voice echo down the empty tunnel.
+Then, you feel someone grab your arm...
+1) scene6
+
+:> scene5 end
+You returned safely to your home without trouble. Maybe it was all in your head. You find out later that a man was arrested in the early hours of the morning on suspicion of intent to kidnap.
+Next time, you promise yourself that you will make sure your phone is fully charged and DON'T SAY YES TO WORKING OVERTIME! 
+
+:> scene6 end
+There is a widespread search for a 20 year old woman, who was reported missing on Saturday. Her last known location was leaving the local restaurant where she worked in the town centre and heading home. It is unknown when she went missing, and her police believed that her phone is not turned on.
+If you have information on her disappearance, please report to XXXX Police by calling 063528389
+
+:> scene7 normal
+You've managed to get a lucky shot at him. Rather than staying and try to call police with the last remaining battery you went home shaking. Later you find out that a man was arrested in the early hours of the morning on suspicion of intent to kidnap.
+Next time, you promise yourself that you will make sure your phone is fully charged and DON'T SAY YES TO WORKING OVERTIME!
+
+# I should probably make this more engaging, but I am lazy
+:> sceneA normal
+You don't have much time (20 seconds) a try to call somebody
+Saturday 18 March, 12:04 AM
+1) Mum
+2) Dad
+3) Brianna (Sister)
+4) Luke (Boyfriend)
+5) 911
+
+:> Mum normal
+Your mom lives 30 minutes away from you. You surprisingly managed to catch her awake but she can't really help you. Your phone dies.
+1) scene6
+
+:> Dad normal
+You hear only ringing and no one is answering your call. Your phone dies shortly after.
+1) scene6
+
+:> Brianna normal
+Your sister only lives 10 minutes away from you. You explained her your situation and feeling, that you are being followed. 
+1) sceneB
+
+:> sceneB end
+You picked up the pace in your feet and rushed over to Brianna's house. Every second that passed felt like an eternity. The blood in your head was rushing, silencing the rapid pace that your pursuer kept to maintain sight of his prey.
+Brianna was waiting outside on the front door. You couldn't help but rush into her arms in intense relief as the front door slammed to the dangers behind you. Once Brianna calmed you down, you reported the situation to the police.
+The next day, they found a suspicious individual following another young woman and arrested him. You're not sure if that is the same man, but you promise yourself that you will always make sure your phone is fully charged and NOT WORK OVERTIME!
+
+:> Luke normal
+You try to convince your boyfriend to meet you half way but he is reluctant. You try to press on him harder and explain your situation. Then he just hangs up.
+1) scene6
+
+:> 911 normal
+You weren't able to communicate quickly enough what's happening to you and noone came.
+1) scene6
+
+#
